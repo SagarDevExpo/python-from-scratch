@@ -1,7 +1,5 @@
 # Python & DSA From Scratch
 
-> **Standalone DSA Repository:** [`SagarDevExpo/dsa-weeks`](https://github.com/SagarDevExpo/dsa-weeks)
-
 ## Your Path (30 min/day, no rush)
 
 ### Phase 1: Python Fundamentals (Weeks 1-3)
@@ -66,6 +64,8 @@ exceptions, libraries, testing, files, regex, OOP, and advanced Python patterns.
 
 ### Phase 4: DSA Patterns (After Intermediate Python)
 Now you're ready for DSA with a stronger Python base.
+
+**Standalone DSA Repository:** [SagarDevExpo/dsa-weeks](https://github.com/SagarDevExpo/dsa-weeks)
 
 ```
 ├── dsa_weeks/
