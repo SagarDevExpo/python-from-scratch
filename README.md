@@ -1,5 +1,7 @@
 # Python & DSA From Scratch
 
+> **Standalone DSA Repository:** [`SagarDevExpo/dsa-weeks`](https://github.com/SagarDevExpo/dsa-weeks)
+
 ## Your Path (30 min/day, no rush)
 
 ### Phase 1: Python Fundamentals (Weeks 1-3)
