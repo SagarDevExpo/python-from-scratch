@@ -32,6 +32,21 @@ Output: `Count: 1`, `Count: 2`, ... `Count: 5`, `Loop finished!`
 2. If True → run the body → go back to step 1
 3. If False → skip the body → continue after the loop
 
+### 🔁 Trace every loop (watch the condition flip)
+
+A `while` loop is a **gate that keeps reopening as long as the answer is True**. The key is spotting *what changes each round* to eventually make it False. Here it's `count += 1`. Trace it:
+
+| Round | `count` | `count <= 5`? | Body runs? | `count` after `+= 1` |
+|-------|---------|----------------|------------|-----------------------|
+| 1 | 1 | True | prints `Count: 1` | 2 |
+| 2 | 2 | True | prints `Count: 2` | 3 |
+| 3 | 3 | True | prints `Count: 3` | 4 |
+| 4 | 4 | True | prints `Count: 4` | 5 |
+| 5 | 5 | True | prints `Count: 5` | 6 |
+| 6 | 6 | **False** | skipped → exit loop | — |
+
+That last row is the whole point: on round 6 the condition is finally False, so the loop stops and `"Loop finished!"` runs. **If you forget `count += 1`, count stays 1 forever → the gate never closes → infinite loop.** Always ask: *"what makes this condition eventually become False?"*
+
 ---
 
 ## Part 2: Counting patterns

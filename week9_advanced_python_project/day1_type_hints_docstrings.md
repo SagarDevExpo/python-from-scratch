@@ -23,6 +23,24 @@ def greet(name: str) -> str:
 
 Python does not force these at runtime, but they help readers and tools.
 
+### 🧩 How to read the two hint spots
+
+There are two places a hint appears, and they answer two different questions:
+
+```
+def greet(name: str) -> str:
+              │          │
+              │          └─ what comes OUT (the return type)
+              └─ what goes IN (this parameter's type)
+```
+
+Read it as: *"greet takes a `name` that should be a `str`, and gives back a `str`."*
+
+- `name: str` → the `: str` after a parameter = "this input should be a string."
+- `-> str` → the arrow after the `)` = "this function returns a string."
+
+**Important:** these are *notes for humans and tools*, not rules. Python won't stop you from passing the wrong type — the hint just documents your intent and lets editors warn you. Think of them as labels on the machine's input and output slots.
+
 ---
 
 ## Part 2: Common Hints

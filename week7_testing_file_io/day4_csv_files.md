@@ -55,6 +55,35 @@ with open("scores.csv") as file:
 
 `DictReader` uses the first row as column names.
 
+### 🧩 `reader` vs `DictReader` — same file, two views
+
+Given this file:
+
+```text
+name,score
+Ana,90
+Ben,85
+```
+
+**`csv.reader`** hands each row back as a plain **list**, and you grab columns by *number*:
+
+| row | you get | `row[0]` | `row[1]` |
+|-----|---------|----------|----------|
+| 1 | `['name', 'score']` | `'name'` | `'score'` |
+| 2 | `['Ana', '90']` | `'Ana'` | `'90'` |
+| 3 | `['Ben', '85']` | `'Ben'` | `'85'` |
+
+Notice the header row comes back too — you deal with it yourself. And `row[0]` / `row[1]` are easy to mix up.
+
+**`csv.DictReader`** is smarter: it reads the first row as **column names**, then hands every following row back as a **dict**, so you grab columns by *name*:
+
+| row | you get |
+|-----|---------|
+| 1 (Ana) | `{'name': 'Ana', 'score': '90'}` → `row['name']` = `'Ana'` |
+| 2 (Ben) | `{'name': 'Ben', 'score': '85'}` → `row['score']` = `'85'` |
+
+The header is used up automatically, and `row['name']` is far clearer than `row[0]`. Prefer `DictReader` when the file has headers. Note: everything comes back as a **string**, so `int(row['score'])` before doing math.
+
 ---
 
 ## Part 4: Write CSV

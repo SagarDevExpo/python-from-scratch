@@ -64,6 +64,30 @@ with open("notes.txt") as file:
 
 `with` automatically closes the file when you are done. Use it by default.
 
+### 🧩 The three modes at a glance
+
+The single letter you pass to `open()` decides what you're allowed to do:
+
+| Mode | Name | If file exists | If file is missing | Existing content |
+|------|------|----------------|--------------------|--------------------|
+| `"w"` | write | opens it | creates it | ⚠️ **erased** (overwritten from scratch) |
+| `"a"` | append | opens it | creates it | ✅ kept, new text added at the end |
+| `"r"` | read | opens it | ❌ error (`FileNotFoundError`) | ✅ kept, read-only |
+
+The big gotcha: **`"w"` wipes the file first.** If you meant to add to it, use `"a"`.
+
+### 🧩 Why `with` matters
+
+Opening a file is like opening a fridge door — you must close it, or things go bad (data may not get saved, the file stays "locked"). Normally you'd have to remember `file.close()`. The `with` block closes it **for you automatically** the moment the block ends, even if an error happens midway:
+
+```python
+with open("notes.txt", "w") as file:   # door opens
+    file.write("hello")
+# ← the instant we leave the indented block, the door closes automatically
+```
+
+That's why the rule is: always use `with open(...)`. You never have to think about closing it.
+
 ---
 
 ## Exercises

@@ -67,6 +67,26 @@ else:
 
 The `r` before the string means raw string. Use raw strings for regex.
 
+### 🧩 Reading the pattern `^.+@.+\.com$` piece by piece
+
+A regex looks like line noise until you read it left-to-right as a checklist. Here's what each chunk demands for `sagar@gmail.com`:
+
+| Piece | Means | Matches in `sagar@gmail.com` |
+|-------|-------|-------------------------------|
+| `^`   | start of the string | (the very beginning) |
+| `.+`  | one or more of any character | `sagar` |
+| `@`   | a literal `@` sign | `@` |
+| `.+`  | one or more of any character | `gmail` |
+| `\.`  | a literal dot (the `\` means "real dot, not any-char") | `.` |
+| `com` | the literal letters c-o-m | `com` |
+| `$`   | end of the string | (the very end) |
+
+So the whole thing reads: *"from start to end: some stuff, then `@`, then some stuff, then `.com`."* If the text can be fully matched against that checklist, `re.search` returns a match; otherwise `None`.
+
+**Two gotchas worth memorizing:**
+- `^` and `$` are anchors — they don't match characters, they pin the pattern to the **start** and **end** so junk can't sneak in before or after.
+- A plain `.` means "any character." To match a *real* dot you must escape it as `\.` — that's why the domain dot is `\.` but the earlier `.+` uses a wildcard dot.
+
 ---
 
 ## Part 5: Character Sets

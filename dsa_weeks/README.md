@@ -1,7 +1,8 @@
 # DSA From Scratch — DSA Track
 
 You have learned enough Python to begin Data Structures and Algorithms.
-If you are following the full course path, complete `python_intermediate/`
+If you are following the full course path, complete the intermediate Python
+weeks (`week6_exceptions_libraries/` through `week9_advanced_python_project/`)
 first, then begin this DSA track.
 This track continues in the same style as `week1`, `week2`, and `week3`.
 Everything needed for each lesson is inside this folder.
@@ -22,31 +23,31 @@ Study for about **30–45 minutes a day**. Do not rush.
 
 ```text
 dsa_weeks/
-├── week6/
+├── week1/
 │   ├── day1_what_is_dsa.md
 │   ├── day2_big_o.md
 │   ├── day3_arrays.md
 │   ├── day4_searching.md
 │   └── day5_practice.md
-├── week7/
+├── week2/
 │   ├── day1_hash_maps.md
 │   ├── day2_sets.md
 │   ├── day3_stacks.md
 │   ├── day4_queues.md
 │   └── day5_practice.md
-├── week8/
+├── week3/
 │   ├── day1_recursion.md
 │   ├── day2_linked_lists.md
 │   ├── day3_linked_list_operations.md
 │   ├── day4_two_pointers.md
 │   └── day5_practice.md
-├── week9/
+├── week4/
 │   ├── day1_trees.md
 │   ├── day2_tree_dfs.md
 │   ├── day3_tree_bfs.md
 │   ├── day4_grids_and_graphs.md
 │   └── day5_practice.md
-└── week10/
+└── week5/
     ├── day1_basic_sorting.md
     ├── day2_merge_sort.md
     ├── day3_heaps.md

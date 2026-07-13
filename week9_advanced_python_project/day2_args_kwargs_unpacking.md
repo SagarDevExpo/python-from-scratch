@@ -54,6 +54,27 @@ def total(*numbers):
 print(total(1, 2, 3))
 ```
 
+### 🧩 The `*` is a "scoop them all up" symbol
+
+Normally a function has a fixed number of slots: `def add(a, b)` takes exactly two. But `*numbers` says *"I don't know how many they'll pass — scoop ALL of them into one tuple called `numbers`."*
+
+```python
+total(1, 2, 3)        # numbers becomes (1, 2, 3)
+total(5, 10)          # numbers becomes (5, 10)
+total(7)              # numbers becomes (7,)
+total()               # numbers becomes ()  — empty, still works
+```
+
+Inside the function `numbers` is just a normal tuple you loop over. Trace `total(1, 2, 3)`:
+
+| Loop | `number` | `answer` before | `answer` after |
+|------|----------|------------------|-----------------|
+| 1    | 1        | 0                | 1               |
+| 2    | 2        | 1                | 3               |
+| 3    | 3        | 3                | 6               |
+
+Returns `6`. The name `args` is just convention — it's the `*` that does the magic. Use it when a function should accept *any number* of inputs (like `print` does).
+
 ---
 
 ## Part 4: **kwargs
@@ -68,6 +89,32 @@ def describe_person(**info):
 
 describe_person(name="Sagar", city="New Jersey")
 ```
+
+### 🧩 `**` scoops up NAMED arguments into a dict
+
+Where `*args` catches loose values, `**kwargs` catches loose **name=value** pairs and packs them into a dictionary:
+
+```python
+describe_person(name="Sagar", city="New Jersey")
+# inside, info becomes:
+# {"name": "Sagar", "city": "New Jersey"}
+```
+
+So the keyword you type on the way in becomes a **key**, and its value becomes the **value**. Then `info.items()` just loops that dict:
+
+```
+name Sagar
+city New Jersey
+```
+
+Quick side-by-side:
+
+| Symbol | Catches | Packs into |
+|--------|---------|------------|
+| `*args` | extra plain values: `f(1, 2, 3)` | a **tuple** |
+| `**kwargs` | extra named values: `f(a=1, b=2)` | a **dict** |
+
+Memory hook: one star = a list-like scoop, two stars = a dict-like scoop (two stars for the two parts of a key–value pair).
 
 ---
 

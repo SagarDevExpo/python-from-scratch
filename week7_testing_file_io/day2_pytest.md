@@ -78,6 +78,17 @@ def test_divide_by_zero():
 
 This test passes only if `divide(10, 0)` raises `ValueError`.
 
+### 🧩 Why the logic feels "backwards"
+
+Normally an error crashing your code is *bad*. But here, the error is the **expected, correct** result — we're testing that `divide` properly *refuses* to divide by zero.
+
+`with pytest.raises(ValueError):` sets a trap that says: *"I expect the code inside this block to blow up with a `ValueError`."*
+
+- If `divide(10, 0)` **does** raise `ValueError` → ✅ test **passes** (the trap caught what it expected).
+- If `divide(10, 0)` runs without error, or raises a *different* error → ❌ test **fails** (the trap was disappointed).
+
+So you're not testing that the code works — you're testing that it *breaks correctly* when given bad input.
+
 ---
 
 ## Exercises

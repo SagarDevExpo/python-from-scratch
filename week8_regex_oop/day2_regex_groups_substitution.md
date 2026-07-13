@@ -43,6 +43,26 @@ if match:
 
 Parentheses capture parts of a match.
 
+### 🧩 Groups = labelled buckets you pull out later
+
+Parentheses `( )` don't change *what* matches — they just say *"remember this piece separately so I can grab it."* Each pair of parens becomes a numbered bucket.
+
+Matching `"Nagireddi, Sagar"` against `^(.+), (.+)$`:
+
+```
+^ (.+) ,  (.+) $
+   │        │
+   │        └─ group 2 → "Sagar"   (everything after the comma+space)
+   └───────── group 1 → "Nagireddi" (everything before the comma)
+```
+
+After a successful match:
+- `match.group(0)` = the **whole** match: `"Nagireddi, Sagar"`
+- `match.group(1)` = **first** bucket: `"Nagireddi"`
+- `match.group(2)` = **second** bucket: `"Sagar"`
+
+Groups are numbered **left to right by their opening `(`**, starting at 1. This is how you pull structured pieces (last name, first name) out of one line of text and rearrange them.
+
 ---
 
 ## Part 3: Replace with re.sub

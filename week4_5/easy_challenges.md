@@ -7,6 +7,47 @@ Solve 2-3 per day. No new concepts — just practice **THINKING**.
 
 ---
 
+## 🧠 Two new "thinking patterns" you'll see in the hints
+
+The problems below hint at two techniques you haven't formally met yet. Here's the *idea* behind each (no problem is solved for you — just the mental model).
+
+### Pattern A: Two pointers
+
+Instead of one loop variable, you use **two position markers** that walk through data. They can start at the same end and move together, or start at opposite ends and move toward each other.
+
+Think of reading a merged list from two sorted piles: you keep a finger on the top card of each pile, compare the two, take the smaller, and advance *only that finger*.
+
+```python
+i = 0          # finger on list A
+j = 0          # finger on list B
+while i < len(a) and j < len(b):
+    if a[i] < b[j]:
+        # take a[i], move only the A finger
+        i += 1
+    else:
+        # take b[j], move only the B finger
+        j += 1
+```
+
+The key insight: the two pointers move at *different speeds* depending on what you find. This shows up in "merge two sorted lists" (#9) and "is subsequence" (#13).
+
+### Pattern B: One pass (track-as-you-go)
+
+Instead of sorting or looping multiple times, you walk through the data **once**, keeping a few variables that remember the best thing seen so far.
+
+Think of finding the tallest person in a line by walking past once, always remembering "the tallest I've seen so far":
+
+```python
+largest = float('-inf')   # "nothing seen yet" starting point
+for num in nums:
+    if num > largest:
+        largest = num     # found a new record → update memory
+```
+
+For "second largest" (#8) you keep *two* memories (`largest` and `second_largest`) and update them carefully as you pass each number. One pass = O(n), much faster than sorting.
+
+---
+
 ## 1. Reverse Words
 Reverse the order of words in a sentence (not the characters).
 `"Hello World Python"` → `"Python World Hello"`

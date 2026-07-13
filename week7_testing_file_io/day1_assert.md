@@ -28,6 +28,23 @@ assert square(-3) == 9
 
 If all assertions pass, nothing prints. Quiet is good.
 
+### 🧩 What `assert` actually does
+
+Read `assert` as the sentence: **"I promise this is True — if it's not, stop everything."**
+
+```
+assert   square(2) == 4
+  │          │
+  │          └─ a question that's either True or False
+  └─ "this had better be True"
+```
+
+Python evaluates the part after `assert`:
+- If it's **True** → nothing happens, the program continues silently. (That's why passing tests are quiet.)
+- If it's **False** → Python throws `AssertionError` and stops, telling you exactly which check failed.
+
+So `assert square(2) == 4` runs `square(2)`, gets `4`, checks `4 == 4` → True → silence. It's an automatic "did my function give the right answer?" alarm that only goes off when something's wrong.
+
 ---
 
 ## Part 2: Failed assert

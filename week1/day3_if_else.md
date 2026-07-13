@@ -109,6 +109,20 @@ Even though 75 >= 60 is also True, it already matched 75 >= 70.
 
 > **ORDER MATTERS:** If you put `score >= 60` first, it would match and skip the rest!
 
+### 🧩 Trace it: why only ONE branch runs
+
+Python walks the chain top to bottom, tries each question, and **jumps out the moment one is True** — like a series of doors where you take the first unlocked one. Trace `score = 75`:
+
+| Check order | Condition | `75` passes? | What happens |
+|-------------|-----------|--------------|--------------|
+| 1st | `score >= 90` | No | move to next |
+| 2nd | `score >= 80` | No | move to next |
+| 3rd | `score >= 70` | **Yes** ✅ | print "Grade: C", **STOP** 🛑 |
+| 4th | `score >= 60` | (never checked) | skipped |
+| else | — | (never reached) | skipped |
+
+This is why **order matters**. `75` also satisfies `>= 60`, but Python never gets there — it already matched `>= 70` and left. Put the *strictest* condition first, loosest last.
+
 ---
 
 ## Part 5: Nested if (if inside if)

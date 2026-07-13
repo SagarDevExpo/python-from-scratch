@@ -125,6 +125,21 @@ while left < right:
     print(f"Left: {nums[left]}, Right: {nums[right]}")
     left += 1
     right -= 1
+```
+
+### 🧩 Trace the two-pointer walk
+
+Two pointers start at **opposite ends** and step toward the middle. The loop runs while `left < right` (they haven't crossed yet). Trace `nums = [1, 2, 3, 4, 5]`:
+
+| Round | `left` | `right` | `left < right`? | prints | after (`left+1`, `right-1`) |
+|-------|--------|---------|------------------|--------|------------------------------|
+| 1 | 0 | 4 | True | Left: 1, Right: 5 | left=1, right=3 |
+| 2 | 1 | 3 | True | Left: 2, Right: 4 | left=2, right=2 |
+| 3 | 2 | 2 | **False** (equal) | — stop | — |
+
+They meet in the middle and the loop ends. This is the backbone of palindrome checks, reversing in place, and pair-finding — you'll reuse it many times.
+
+---
 
 # PATTERN 2: Build a result list
 evens = []
@@ -150,6 +165,34 @@ a = [1, 2, 3]
 b = a       # b points to SAME list! Changes to b affect a!
 b = a[:]    # COPY — b is separate
 ```
+
+### 🧩 The aliasing trap: why `b = a` doesn't copy
+
+This is one of the sneakiest beginner bugs. With a list, `b = a` does **not** make a second list — it makes `b` a *second label on the same box*. Both names point at one list, so a change through either name shows up in both.
+
+```python
+a = [1, 2, 3]
+b = a          # b and a are two labels on ONE list
+b.append(4)
+print(a)       # [1, 2, 3, 4]  😱 a changed too!
+```
+
+```
+ a ──┐
+    ├─→ [1, 2, 3, 4]   (one list, two labels)
+ b ──┘
+```
+
+To get a **real, separate copy**, slice the whole thing with `a[:]` (or `a.copy()`):
+
+```python
+a = [1, 2, 3]
+b = a[:]       # b is now its OWN list
+b.append(4)
+print(a)       # [1, 2, 3]   ✅ a is untouched
+```
+
+Rule of thumb: **`=` copies the label, not the list.** When you want an independent copy, use `[:]`.
 
 ---
 

@@ -77,6 +77,37 @@ if "node_A" in visited:
     print("Already visited!")
 ```
 
+### 🐢 Why is a set "fast"? (the O(1) idea in plain words)
+
+Imagine looking for a name in a phone book.
+- A **list** = an unsorted pile of papers. To know if a name is there, you check paper 1, then 2, then 3... maybe all of them. If there are a million papers, that's a million checks. This is **O(n)** — "grows with the size."
+- A **set** = a magic filing cabinet where each name has a fixed drawer. You go *straight* to the drawer and look. It takes the same tiny amount of time whether there are 10 names or a million. This is **O(1)** — "constant, doesn't grow."
+
+That's why `999999 in big_set` is instant even with a million items. Whenever a problem says *"have I seen this?"* or *"is this in the collection?"*, a set is your tool.
+
+### 🐢 Tracing "find the first duplicate" with a set
+
+```python
+def first_duplicate(nums):
+    seen = set()
+    for num in nums:
+        if num in seen:      # have I met this number before?
+            return num       # yes → it's the first repeat, hand it back
+        seen.add(num)        # no → remember it and continue
+    return None              # loop ended, everything was unique
+```
+
+Trace `first_duplicate([2, 1, 3, 1, 2])`. `seen` starts empty `set()`.
+
+| Loop | `num` | `num in seen?` | Action | `seen` after |
+|------|-------|-----------------|--------|--------------|
+| 1    | 2     | No              | add 2   | `{2}` |
+| 2    | 1     | No              | add 1   | `{2, 1}` |
+| 3    | 3     | No              | add 3   | `{2, 1, 3}` |
+| 4    | 1     | **Yes!**        | `return 1` 🛑 | (stops here) |
+
+It returns `1` — the first number that showed up a second time. Notice this is the *exact same skeleton* as `has_duplicate` from yesterday, except we return the **number itself** instead of `True`. Recognizing that "same skeleton, small change" is the real skill.
+
 ---
 
 ## Part 5: Tuples — Immutable Lists

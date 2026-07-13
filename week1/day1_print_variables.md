@@ -64,6 +64,24 @@ age = 26
 print("Next year I'll be", age)
 ```
 
+### 📦 The labeled-box model
+
+Picture a variable as a **labeled box**. `=` means *"put this value in the box with this label."*
+
+```python
+name = "Sagar"   # box labeled `name` now holds "Sagar"
+age = 25         # box labeled `age`  now holds 25
+```
+
+When you **reassign**, the old value is thrown out and replaced. Trace this:
+
+| Line | What happens | `age` now holds |
+|------|--------------|------------------|
+| `age = 25` | put 25 in the box | 25 |
+| `age = 26` | replace with 26 (25 is gone) | 26 |
+
+So `=` is **not** "equals" like in math — it's an *action*: "store this now." Read `age = 26` as *"make age hold 26,"* not *"age equals 26."* Always ask: **what does this variable hold at THIS exact line?**
+
 ---
 
 ## Part 3: Variable naming rules

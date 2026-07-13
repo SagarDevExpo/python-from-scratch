@@ -56,7 +56,23 @@ else:
 # Same thing in ONE line (ternary):
 status = "adult" if age >= 18 else "minor"
 print(status)
+```
 
+### 🧩 How to read a ternary out loud
+
+A ternary is just an if/else folded onto one line. Read it in this order:
+
+```
+status = "adult"  if age >= 18  else "minor"
+         │          │              │
+         │          │              └─ value if the test is False
+         │          └─ the test (the question)
+         └─ value if the test is True
+```
+
+Say it as: *"status becomes 'adult' **if** age >= 18, **otherwise** 'minor'."* The **middle** is the question; the value **before** `if` is used when it's True; the value **after** `else` when it's False. It picks exactly one and stores it.
+
+```python
 # More examples:
 x = 10
 result = "even" if x % 2 == 0 else "odd"

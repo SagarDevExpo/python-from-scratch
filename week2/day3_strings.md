@@ -50,12 +50,25 @@ print(s[::2])     # "Hlo ol!" (every 2nd character)
 print(s[::-1])    # "!dlroW ,olleH" (REVERSED! Very useful in DSA!)
 ```
 
-**Reverse a string & check palindrome:**
+### 🧩 How to read a slice `s[start:end]`
+
+A slice grabs a *piece* of the string. The rule mirrors `range`: it starts **at** `start` and stops **just before** `end` (the end index is not included).
+
+```
+s = "Hello, World!"
+     0123456789...
+
+s[0:5]  → indexes 0,1,2,3,4  → "Hello"   (index 5 NOT included)
+s[7:12] → indexes 7,8,9,10,11 → "World"
+```
+
+The shortcuts just leave a side blank: `s[:5]` = "from the start to 5", `s[7:]` = "from 7 to the end".
+
+**The famous one — `s[::-1]` reverses:** the three slots are `[start:end:step]`. A `step` of `-1` means *"walk backwards one at a time,"* so it reads the whole string end-to-front. That's the go-to trick for reversing and palindrome checks:
 
 ```python
 original = "racecar"
-reversed_str = original[::-1]
-print(f"Is palindrome: {original == reversed_str}")  # True
+print(original == original[::-1])   # True — same forwards and backwards
 ```
 
 ---

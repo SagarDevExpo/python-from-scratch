@@ -26,6 +26,29 @@ squares = [i ** 2 for i in range(6)]  # [0, 1, 4, 9, 16, 25]
 
 **Syntax:** `[expression FOR variable IN iterable]`
 
+### 🧩 How to READ it (this is the trick)
+
+A comprehension is just a `for` loop folded into one line. Match the pieces:
+
+```
+squares = [   i ** 2      for i in range(6)   ]
+              │──────│      │───────────│
+              what to        the loop
+              collect        (same as "for i in range(6):")
+```
+
+Read it out loud **right-to-left**: *"for each `i` in range(6), collect `i ** 2`."*
+
+Same three moving parts as the long version:
+
+| Long version                | Comprehension part |
+|-----------------------------|--------------------|
+| `for i in range(6):`        | `for i in range(6)` (at the end) |
+| `i ** 2`                    | `i ** 2` (at the front) |
+| `squares.append(...)`       | the `[ ]` brackets do the collecting automatically |
+
+So the loop runs `i = 0, 1, 2, 3, 4, 5`, and each time it drops `i ** 2` into the new list → `[0, 1, 4, 9, 16, 25]`. Nothing new is happening — it's the loop you already know, just written compactly.
+
 ---
 
 ## Part 2: With condition (filter)
@@ -38,6 +61,28 @@ evens = [x for x in range(10) if x % 2 == 0]  # [0, 2, 4, 6, 8]
 words = ["the", "quick", "brown", "fox"]
 long = [w for w in words if len(w) > 3]  # ["quick", "brown"]
 ```
+
+### 🧩 The `if` at the END is a bouncer
+
+When `if` comes **after** the `for`, it's a **filter** — a bouncer at the door deciding who gets in.
+
+```
+evens = [  x   for x in range(10)   if x % 2 == 0  ]
+           │                          │───────────│
+           keep it        only if this is True (the bouncer)
+```
+
+Read it: *"for each `x` in range(10), IF `x` is even, keep `x`."* Numbers that fail the test are simply skipped — they never enter the list.
+
+| `x` | `x % 2 == 0`? | in the list? |
+|-----|---------------|--------------|
+| 0   | Yes           | ✅ kept |
+| 1   | No            | ❌ skipped |
+| 2   | Yes           | ✅ kept |
+| 3   | No            | ❌ skipped |
+| ... | ...           | ... |
+
+Result: `[0, 2, 4, 6, 8]`.
 
 ---
 
@@ -52,6 +97,25 @@ labels = ["even" if x % 2 == 0 else "odd" for x in range(6)]
 nums = [-3, -1, 0, 2, -5]
 absolutes = [n if n >= 0 else -n for n in nums]  # [3, 1, 0, 2, 5]
 ```
+
+### 🧩 `if` at the FRONT is a chooser, not a bouncer
+
+This is the #1 confusion, so pin it down:
+
+- **`if` at the END** = filter (decides *whether* to keep the item). Some items get dropped.
+- **`if...else` at the FRONT** = transform (decides *what value* to put in). Every item stays, but it's changed.
+
+```
+labels = [  "even" if x % 2 == 0 else "odd"    for x in range(6)  ]
+            │───────────── the value ──────────│    │── the loop ──│
+            "if it's even use 'even', otherwise 'odd'"
+```
+
+Read it: *"for each `x`, put in 'even' if `x` is even, else put in 'odd'."* The list stays length 6 — nothing is filtered out, each number is just relabeled.
+
+**Quick memory hook:**
+- `[X for i in ... if COND]` → filter (if at the back = "back door bouncer")
+- `[X if COND else Y for i in ...]` → choose (if at the front = "front-desk chooser")
 
 ---
 

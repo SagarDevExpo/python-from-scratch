@@ -56,6 +56,19 @@ for _ in range(3):
     print("Hello!")
 ```
 
+### 🧩 The #1 range() gotcha: stop is NOT included
+
+`range` **stops one short** of the number you give it. `range(5)` gives you five numbers starting at 0 — `0, 1, 2, 3, 4` — but **not 5**. Think of it as *"go up to, but don't touch, the stop number."*
+
+| Call | Produces | Note |
+|------|----------|------|
+| `range(5)` | `0 1 2 3 4` | starts at 0, stops before 5 |
+| `range(3, 8)` | `3 4 5 6 7` | starts at 3, stops before 8 |
+| `range(0, 20, 5)` | `0 5 10 15` | step of 5, stops before 20 |
+| `range(10, 0, -1)` | `10 9 8 ... 1` | negative step counts down |
+
+So `range(5)` runs the loop **5 times** (count them: 0,1,2,3,4). This "stops before" rule trips up everyone at first — when a loop misses its last number, this is usually why.
+
 ---
 
 ## Part 3: for vs while — When to use which?
@@ -84,6 +97,20 @@ for i, fruit in enumerate(fruits, start=1):
     print(f"{i}. {fruit}")
 # 1. apple, 2. banana, 3. cherry
 ```
+
+### 🧩 What enumerate hands you (you'll use this constantly)
+
+`enumerate` gives you **two things each loop**: the position `i` AND the value. It saves you from the clumsy `range(len(...))` dance.
+
+Trace `for i, fruit in enumerate(["apple", "banana", "cherry"])`:
+
+| Loop | `i` (position) | `fruit` (value) | prints |
+|------|----------------|------------------|--------|
+| 1 | 0 | `"apple"` | `0: apple` |
+| 2 | 1 | `"banana"` | `1: banana` |
+| 3 | 2 | `"cherry"` | `2: cherry` |
+
+The two names get filled in *together* each round. This is the exact tool the DSA search pattern uses (`for i, num in enumerate(nums)`) — when you need *both* "where am I" and "what's here," reach for `enumerate`.
 
 ---
 

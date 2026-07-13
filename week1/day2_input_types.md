@@ -28,6 +28,24 @@ print(type(age_text))  # <class 'str'> — it's a STRING, not a number!
 # next_year = age_text + 1  # ERROR! Can't add string + number
 ```
 
+### 🧩 Why input() gives back text (and why it bites)
+
+Think of `input()` as a **microphone**: it captures whatever the user types as raw *text*, even if they type digits. `"25"` (text) is not the same as `25` (a number you can do math with).
+
+```python
+age_text = input("Age: ")   # user types 25 → age_text is the STRING "25"
+age_text + 1                # 💥 error: can't add text and a number
+```
+
+That's why the standard move is **wrap it in `int()` right away** to convert the text into a real number:
+
+```python
+age = int(input("Age: "))   # text "25" → number 25
+print(age + 1)              # ✅ 26
+```
+
+Remember: `input()` → always a string. If you need to do math, convert first.
+
 ---
 
 ## Part 2: Type conversion — Changing types
